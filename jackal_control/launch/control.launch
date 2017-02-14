@@ -4,8 +4,34 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller --shutdown-timeout 1" />
   
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+  <!-- original EKF -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
+  </node>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_two_d">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_two_d.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/two_d"/>
+  </node>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_collaborative.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/collaborative"/>
+  </node>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative_two_d">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_collaborative_two_d.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/collaborative_two_d"/>
+  </node>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_global">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_global.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/global"/>
+  </node>
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_global_two_d">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_global_two_d.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/global_two_d"/>
   </node>
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
