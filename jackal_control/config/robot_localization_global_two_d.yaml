@@ -3,6 +3,7 @@
 frequency: 50
 
 two_d_mode: true
+odom_frame: odom_global_two_d
 
 odom0: /jackal_velocity_controller/odom
 odom0_config: [false, false, false,
