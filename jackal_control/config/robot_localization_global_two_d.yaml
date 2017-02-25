@@ -3,7 +3,7 @@
 frequency: 50
 
 two_d_mode: true
-odom_frame: odom_global_two_d
+publish_tf: false
 
 odom0: /jackal_velocity_controller/odom
 odom0_config: [false, false, false,
@@ -13,8 +13,12 @@ odom0_config: [false, false, false,
                false, false, false]
 odom0_differential: false
 
-odom1: <navsat topic>
-odom1_config: TODO
+odom1: /odometry/gps 
+odom1_config: [true , true , false,
+               false, false, false,
+               false, false, false,
+               false, false, false,
+               false, false, false]
 odom1_differential: false
 
 imu0: /imu/data

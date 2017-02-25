@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true" respawn="true">
+    <rosparam command="load" file="$(find jackal_control)/config/navsat_transform.yaml" />
+    <remap from="gps/fix" to="/navsat/fix"/>
+  </node>
+</launch>
