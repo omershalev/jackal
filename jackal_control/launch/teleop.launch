@@ -23,4 +23,18 @@
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
   </node>
+
+   <!--<node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+        args="cmd_vel jackal_velocity_controller/cmd_vel" />-->
+
+  <!-- velocity smoother -->
+  <node pkg="nodelet" type="nodelet" name="vel_smoother_nodelet_manager" args="manager"/>
+  <include file="$(find yocs_velocity_smoother)/launch/velocity_smoother.launch">
+    <arg name="node_name"             value="vel_smoother"/>
+    <arg name="nodelet_manager_name"  value="vel_smoother_nodelet_manager"/>
+    <arg name="config_file"           value="$(find jackal_control)/config/vel_smoother.yaml"/>
+    <arg name="raw_cmd_vel_topic"     value="/cmd_vel"/>
+    <arg name="smooth_cmd_vel_topic"  value="/jackal_velocity_controller/cmd_vel"/>
+  </include>
+
 </launch>

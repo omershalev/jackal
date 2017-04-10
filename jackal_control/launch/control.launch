@@ -6,14 +6,13 @@
 
   <include file="$(find jackal_control)/launch/navsat_transform.launch" />  
 
-  <!-- original EKF -->
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
   </node>
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_two_d">
-    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_two_d.yaml" />
-    <remap from="odometry/filtered" to="odometry/filtered/two_d"/>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_internal_imu">
+    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_internal_imu.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered/internal_imu"/>
   </node>
 
   <!--<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative">
@@ -21,32 +20,10 @@
     <remap from="odometry/filtered" to="odometry/filtered/collaborative"/>
   </node>-->
 
-  <!--<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative_two_d">
-    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_collaborative_two_d.yaml" />
-    <remap from="odometry/filtered" to="odometry/filtered/collaborative_two_d"/>
-  </node>-->
-
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_global">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization_global.yaml" />
     <remap from="odometry/filtered" to="odometry/filtered/global"/>
   </node>
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_global_two_d">
-    <rosparam command="load" file="$(find jackal_control)/config/robot_localization_global_two_d.yaml" />
-    <remap from="odometry/filtered" to="odometry/filtered/global_two_d"/>
-  </node>
-
-<!--   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
-        args="cmd_vel jackal_velocity_controller/cmd_vel" />
- -->  
- <!-- velocity smoother -->
-  <node pkg="nodelet" type="nodelet" name="vel_smoother_nodelet_manager" args="manager"/>
-  <include file="$(find yocs_velocity_smoother)/launch/velocity_smoother.launch">
-    <arg name="node_name"             value="vel_smoother"/>
-    <arg name="nodelet_manager_name"  value="vel_smoother_nodelet_manager"/>
-    <arg name="config_file"           value="$(find jackal_control)/config/vel_smoother.yaml"/>
-    <arg name="raw_cmd_vel_topic"     value="/cmd_vel"/>
-    <arg name="smooth_cmd_vel_topic"  value="/jackal_velocity_controller/cmd_vel"/>
-  </include>
 </launch>
 

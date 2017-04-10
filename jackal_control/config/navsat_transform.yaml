@@ -1,8 +1,7 @@
 frequency: 30
 
-# Fill in the magnteric declination in your area
 magnetic_declination_radians: 0.06981317
- 
+
 zero_altitude: false
 
 wait_for_datum: false
