@@ -138,16 +138,16 @@
        to supply the joint between it and imu_link. This is important so that imu_link
        always points to the "active" IMU. When an upgrade IMU is connected, the
        internal_imu_link should remain, but imu_link should point to the upgrade one. -->
-  <link name="imu_link">
+  <link name="internal_imu_link">
     <inertial>
       <mass value="0.001"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="${dummy_inertia}" ixy="0.0" ixz="0.0" iyy="${dummy_inertia}" iyz="0.0" izz="${dummy_inertia}"/>
     </inertial>
   </link>
-  <joint name="imu_joint" type="fixed">
+  <joint name="internal_imu_joint" type="fixed">
     <parent link="chassis_link" />
-    <child link="imu_link" />
+    <child link="internal_imu_link" />
   </joint>
 
   <!-- TODO: Same note as applies to imu_link -->
@@ -197,4 +197,5 @@
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
+  <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS microstrain_imu.urdf)" />
 </robot>
