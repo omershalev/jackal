@@ -15,10 +15,10 @@
     <remap from="odometry/filtered" to="odometry/filtered/internal_imu"/>
   </node>
 
-  <!--<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative">
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_collaborative">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization_collaborative.yaml" />
     <remap from="odometry/filtered" to="odometry/filtered/collaborative"/>
-  </node>-->
+  </node>
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_global">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization_global.yaml" />

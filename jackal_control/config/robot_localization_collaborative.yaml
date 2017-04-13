@@ -11,13 +11,13 @@ odom0_config: [false, false, false,
                false, false, false]
 odom0_differential: false
 
-pose0: <new topic>
-odom0_config: [true, true, false,
+pose0: /ugv_pose_from_air 
+pose0_config: [true, true, false,
                false, false, false,
                false, false, false,
                false, false, false,
                false, false, false]
-odom0_differential: false
+pose0_differential: false
 
 imu0: /microstrain/imu/data 
 imu0_config: [false, false, false,
